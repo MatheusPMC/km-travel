@@ -4,21 +4,22 @@ import com.acme.model.Travel
 import com.acme.repository.TravelRepository
 import com.acme.service.TravelService
 import java.net.http.HttpResponse
+import java.util.concurrent.ConcurrentHashMap
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TravelServiceImpl(private var travelRepository: TravelRepository): TravelService {
-
+class TravelServiceImpl @Inject constructor(private var travelRepository: TravelRepository): TravelService {
 
     override fun create(travel: Travel): Travel {
         return  travelRepository.save(travel)
     }
 
         override fun getById(id: Long): Travel? {
-            return travelRepository.findById(id).orElse( null)
+            return this.travelRepository.findById(id).orElse( null)
         }
 
-        override fun delete(id: Long) {
+        override fun delete(id: Long,) {
             this.travelRepository.deleteById(id).orElse(null)
         }
 
