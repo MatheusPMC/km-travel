@@ -10,10 +10,12 @@ import io.micronaut.http.MediaType.APPLICATION_JSON
 import io.micronaut.http.annotation.*
 
 
-@Controller(value = "/travel")
-class TravelController(private val travelService: TravelService) {
 
+@Controller("/travel")
+class TravelController(private val travelService: TravelService) {
     @Get
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
     fun getAll() :HttpResponse<List<Travel>> {
         val listTravel = this.travelService.getAll()
         return HttpResponse.ok(listTravel).body(this.travelService.getAll())
@@ -33,11 +35,9 @@ class TravelController(private val travelService: TravelService) {
 
     @Post("/")
     @Produces(APPLICATION_JSON)
-    @Consumes(APPLICATION_JSON)
     fun create(@Body travel: Travel): HttpResponse<Travel?> {
         TravelUtils.localValid(travel)
-        this.travelService.create(travel)
-        return HttpResponse.created(travel)
+        return HttpResponse.created(HttpStatus.CREATED).body(this.travelService.create(travel))
     }
 
     @Put("/{id}")

@@ -2,26 +2,17 @@ package com.acme.controller.test
 
 import com.acme.controller.TravelController
 import com.acme.model.Travel
-import com.acme.model.handler.ErrorMessage
-import com.acme.repository.TravelRepository
 import com.acme.service.TravelService
-import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
-import io.micronaut.http.annotation.Body
-import io.micronaut.http.annotation.Get
-import io.micronaut.http.annotation.PathVariable
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
-
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import java.util.*
 
 
 @MicronautTest
@@ -29,7 +20,6 @@ class TravelControllerTest {
 
     @InjectMockKs
     lateinit var travelController: TravelController
-    lateinit var travelRepository: TravelRepository
 
     @MockK
     lateinit var travelService: TravelService
@@ -39,8 +29,9 @@ class TravelControllerTest {
     fun setUp() {
         clearAllMocks()
         MockKAnnotations.init(this)
-        travel = Travel(1L, "local","description",1,1.99)
+        travel = Travel(1L, "cacun", "viagem de familia", 10, 11999.99)
     }
+
 
     @Test
     fun `request travel with success`() {
@@ -50,30 +41,24 @@ class TravelControllerTest {
     }
 
     @Test
-    fun testConsultarSucesso() {
-        every { travelService.getById(20) } returns travel
-    }
-
-
-    @Test
-    fun `must getAll travel with success`() {
-        fun getAll(): List<Travel> {
-            return travelRepository.findAll().toList()
-        }
+    fun `request get travel with success`() {
+        every { travelService.getAll() } returns arrayListOf(travel)
+        val result = travelController.getAll()
+        Assertions.assertEquals(arrayListOf(travel), result.body())
     }
 
     @Test
-    fun `must delete travel with success`() {
-        fun delete(id: Long, ) {
-            this.travelRepository.deleteById(id)
-
-        }
+    fun `request update travel with success`() {
+        every { travelService.update(1, travel) } returns travel
+        val result = travelController.update(1, travel)
+        Assertions.assertEquals(travel, result.body())
     }
 
     @Test
-    fun `must update travel with success`() {
-        fun update(@PathVariable id: Long, @Body travel: Travel): HttpResponse<Travel> {
-            return HttpResponse.ok(HttpStatus.OK).body(this.travelService.update(id, travel))
-        }
+    fun `delete travel with success`() {
+        every { travelService.getById(any()) } returns travel
+        every { travelService.delete(any()) } returns Unit
+        val result = travelController.delete(1)
+        Assertions.assertEquals(HttpStatus.OK, result.status())
     }
 }

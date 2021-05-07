@@ -3,8 +3,6 @@ package com.acme.service.impl
 import com.acme.model.Travel
 import com.acme.repository.TravelRepository
 import com.acme.service.TravelService
-import java.net.http.HttpResponse
-import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,7 +32,7 @@ class TravelServiceImpl @Inject constructor(private var travelRepository: Travel
 
 }
 
-private fun Any.orElse(nothing: Nothing?) {
+fun Any.orElse(nothing: Nothing?) {
 
 }
 
