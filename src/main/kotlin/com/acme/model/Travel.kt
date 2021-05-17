@@ -1,28 +1,13 @@
 package com.acme.model
 
 
-import javax.persistence.*
+import io.micronaut.core.annotation.Introspected
 
-@Entity
+@Introspected
 data class Travel(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    val id: Long?,
-
-
-    @Column(name = "local")
-    val local: String,
-
-    @Column(name = "description")
-    val description: String,
-
-    @Column(name = "days")
-    val days: Int,
-
-    @Column(name = "price")
-    val price: Double
-){
-    constructor(): this(null,"","",0,0.0)
-
-}
+    val id: Long? = null,
+    val local: String = "",
+    val description: String = "",
+    val days: Int = 0,
+    val price: Double = 0.0
+)

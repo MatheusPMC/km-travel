@@ -1,10 +1,9 @@
 package com.acme.repository
 
 import com.acme.model.Travel
-import io.micronaut.data.annotation.Repository
-import io.micronaut.data.jpa.repository.JpaRepository
-import io.micronaut.data.repository.CrudRepository
+import javax.inject.Singleton
 
-@Repository
-interface TravelRepository: JpaRepository<Travel, Long>{
+@Singleton
+interface TravelRepository{
+    fun create(travel: Travel): Travel
 }

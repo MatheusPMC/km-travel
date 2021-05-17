@@ -10,8 +10,8 @@ cassandra:
   default:
     basic:
       contact-points:
-         - localhost:9042
-      session-keyspace: mykeyspace
+        - 127.0.0.1:9042
+      session-keyspace: travel
       load-balancing-policy:
         local-datacenter: datacenter1
 

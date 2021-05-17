@@ -27,14 +27,13 @@ dependencies {
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-runtime")
-    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-validation")
-    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
 
-    implementation("com.datastax.oss:java-driver-core:4.11.0")
-    implementation("com.scylladb:scylla-driver-core:3.10.1-scylla-0")
+    implementation ("com.datastax.oss:java-driver-core:4.11.0")
+    implementation ("com.datastax.oss:java-driver-query-builder")
+    implementation("io.micronaut.cassandra:micronaut-cassandra")
 
     kaptTest "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut.test:micronaut-test-kotlintest:2.3.2"

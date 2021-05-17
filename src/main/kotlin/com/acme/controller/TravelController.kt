@@ -7,6 +7,7 @@ import com.acme.utils.TravelUtils
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType.APPLICATION_JSON
+import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.*
 
 
@@ -22,9 +23,7 @@ class TravelController(private val travelService: TravelService) {
     }
 
     @Get("/{id}")
-    @Produces(APPLICATION_JSON)
-    @Consumes(APPLICATION_JSON)
-    fun getGetId(@PathVariable id:Long): HttpResponse<Any> {
+    fun getGetId(@PathVariable id: Long): HttpResponse<Any> {
         var travel = this.travelService.getById(id)
         return if (travel != null) {
             HttpResponse.ok(travel)
@@ -32,14 +31,25 @@ class TravelController(private val travelService: TravelService) {
             HttpResponse.notFound(ErrorMessage("Viagem nao localizada","A viagem do ID: $id nao foi localizado"))
         }
     }
-
     @Post("/")
     @Produces(APPLICATION_JSON)
     fun create(@Body travel: Travel): HttpResponse<Travel?> {
         TravelUtils.localValid(travel)
         return HttpResponse.created(HttpStatus.CREATED).body(this.travelService.create(travel))
     }
+}
 
+      /*  var travel = this.travelService.getById(id)
+        return if (travel != null) {
+            HttpResponse.ok(travel)
+        } else {
+            HttpResponse.notFound(ErrorMessage("Viagem nao localizada", "A viagem do ID: $id nao foi localizado"))
+        }
+    }
+}
+
+
+/*
     @Put("/{id}")
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
@@ -61,3 +71,5 @@ class TravelController(private val travelService: TravelService) {
     }
 
 }
+
+ */
