@@ -14,10 +14,3 @@ cassandra:
       session-keyspace: travel
       load-balancing-policy:
         local-datacenter: datacenter1
-
-jpa:
-  default:
-    properties:
-      hibernate:
-        bytecode:
-          provider: none
