@@ -29,6 +29,7 @@ dependencies {
     implementation("io.micronaut:micronaut-runtime")
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.nats:micronaut-nats")
 
     implementation ("com.datastax.oss:java-driver-core:4.11.0")
     implementation("io.micronaut.cassandra:micronaut-cassandra")

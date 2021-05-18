@@ -14,3 +14,6 @@ cassandra:
       session-keyspace: travel
       load-balancing-policy:
         local-datacenter: datacenter1
+nats:
+  addresses:
+    - "nats://localhost:4222"

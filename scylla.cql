@@ -5,7 +5,7 @@ AND durable_writes = true;
 use product;
 
 CREATE TABLE Travel(
-    id bigint,
+    id uuid,
     local text,
     description text,
     days int,
