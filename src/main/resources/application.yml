@@ -10,10 +10,16 @@ cassandra:
   default:
     basic:
       contact-points:
-        - 127.0.0.1:9042
+        - 172.17.0.2:9042
       session-keyspace: travel
       load-balancing-policy:
         local-datacenter: datacenter1
 nats:
   addresses:
     - "nats://localhost:4222"
+
+
+  aws.access_key_id:
+  aws.secret_acess_key:
+  s3.bucket:
+  s3.region:

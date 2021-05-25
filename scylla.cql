@@ -1,8 +1,6 @@
-CREATE KEYSPACE travel
-WITH replication = {'class' : 'SimpleStrategy', 'replication_factor' : 3}
-AND durable_writes = true;
+CREATE KEYSPACE travel WITH replication = {'class' : 'SimpleStrategy', 'replication_factor' : 3} AND durable_writes = true;
 
-use product;
+use travel;
 
 CREATE TABLE Travel(
     id uuid,
