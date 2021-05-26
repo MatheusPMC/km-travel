@@ -13,14 +13,14 @@ import javax.inject.Singleton
 @Produces
 @Singleton
 @Requires(classes = [TravelException::class, ExceptionHandler::class])
-class TravelExceptionHandler: ExceptionHandler<TravelException?, HttpResponse<*>> {
+class TravelExceptionHandler : ExceptionHandler<TravelException?, HttpResponse<*>> {
 
-    val LOG : Logger = LoggerFactory.getLogger(TravelExceptionHandler::class.java)
+    val LOG: Logger = LoggerFactory.getLogger(TravelExceptionHandler::class.java)
     override fun handle(request: HttpRequest<*>?, exception: TravelException?): HttpResponse<*> {
         val travelError = TravelError(
-            HttpStatus.BAD_REQUEST.toString(),400
-            ,"invalid arguments")
-        LOG.error("REQUEST: {}", )
+            HttpStatus.BAD_REQUEST.toString(), 400, "invalid arguments"
+        )
+        LOG.error("REQUEST: {}")
         return HttpResponse.badRequest(travelError)
 
     }

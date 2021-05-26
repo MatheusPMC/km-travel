@@ -1,4 +1,4 @@
-CREATE KEYSPACE travel WITH replication = {'class' : 'SimpleStrategy', 'replication_factor' : 3} AND durable_writes = true;
+CREATE KEYSPACE produto WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
 use travel;
 

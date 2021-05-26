@@ -8,7 +8,7 @@ import java.util.*
 import javax.inject.Singleton
 
 @Singleton
-class TravelServiceImpl (private val session: CqlSession): TravelService {
+class TravelServiceImpl(private val session: CqlSession) : TravelService {
 
     override fun create(travel: Travel): Travel {
         val travelEntity = Travel(
@@ -30,7 +30,7 @@ class TravelServiceImpl (private val session: CqlSession): TravelService {
     }
 
     override fun getAll(): List<Travel> {
-        var results = session.execute("SELECT * from travel.Travel")
+        val results = session.execute("SELECT * from travel.Travel")
         val res = results.map {
             Travel(
                 it.getUuid("id"), it.getString("local").orEmpty(), it.getString("description").orEmpty(),
@@ -50,14 +50,14 @@ class TravelServiceImpl (private val session: CqlSession): TravelService {
         return result.map { Travel ->
             Travel(
                 Travel.getUuid("id")!!, Travel.getString("local")!!,
-                Travel.getString("description")!!, Travel.getInt("days")!!, Travel.getDouble("price")!!
+                Travel.getString("description")!!, Travel.getInt("days"), Travel.getDouble("price")
             )
         }.first()
     }
 
     override fun delete(id: String) {
         val temporaryId = UUID.fromString(id)
-        val result = session.execute(
+        session.execute(
             SimpleStatement.newInstance(
                 "DELETE FROM travel.Travel WHERE id = ?", temporaryId
             )
@@ -74,7 +74,7 @@ class TravelServiceImpl (private val session: CqlSession): TravelService {
                     travel.days,
                     travel.price,
                     travel.id
-                    )
+                )
         )
         return travel
 

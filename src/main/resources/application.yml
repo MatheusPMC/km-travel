@@ -17,9 +17,6 @@ cassandra:
 nats:
   addresses:
     - "nats://localhost:4222"
-
-
-  aws.access_key_id:
-  aws.secret_acess_key:
-  s3.bucket:
-  s3.region:
+endpoints:
+  health:
+    enabled: true

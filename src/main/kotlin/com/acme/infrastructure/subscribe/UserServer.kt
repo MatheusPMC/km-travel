@@ -1,4 +1,4 @@
-package com.acme.nats
+package com.acme.infrastructure.subscribe
 
 import com.acme.model.Travel
 import com.acme.service.impl.TravelServiceImpl
