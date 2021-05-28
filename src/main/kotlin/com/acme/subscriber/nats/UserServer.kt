@@ -12,18 +12,15 @@ class UserServer(private val travelService: TravelService, private val travelRep
     @Subject("createTravel")
     fun receive(travelEntity: TravelEntity) {
         travelService.create(travelEntity)
-        println("OK! $travelEntity")
     }
 
     @Subject("updateTravel")
     fun receiveUpdate(travelEntity: TravelEntity) {
         travelService.update(travelEntity)
-        println("OK! $travelEntity")
     }
 
     @Subject("deleteTravel")
     fun receiveDelete(id: String) {
         travelService.delete(id)
-        println("OK! $id")
     }
 }

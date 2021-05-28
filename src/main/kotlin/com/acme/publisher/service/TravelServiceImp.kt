@@ -12,7 +12,6 @@ class TravelServiceImp(private val natsClient: TravelClient) : TravelService {
             UUID.randomUUID(), travel.local, travel.description,
             travel.days, travel.price)
         natsClient.send(createTravel)
-        print(createTravel)
         return createTravel
     }
 
@@ -21,12 +20,10 @@ class TravelServiceImp(private val natsClient: TravelClient) : TravelService {
             UUID.fromString(id), travel.local, travel.description,
             travel.days, travel.price)
         natsClient.trade(updateTravel)
-        print("publisher $updateTravel")
         return updateTravel
     }
 
     override fun delete(id: String) {
         natsClient.delete(id)
-        print("Delete $id")
     }
 }
