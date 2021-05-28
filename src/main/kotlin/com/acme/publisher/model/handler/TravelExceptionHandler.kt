@@ -1,4 +1,4 @@
-package com.acme.model.handler
+package com.acme.publisher.model.handler
 
 import io.micronaut.context.annotation.Requires
 import io.micronaut.http.HttpRequest

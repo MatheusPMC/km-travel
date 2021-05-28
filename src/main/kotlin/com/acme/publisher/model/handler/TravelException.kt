@@ -1,4 +1,4 @@
-package com.acme.model.handler
+package com.acme.publisher.model.handler
 
 class TravelException : RuntimeException() {
 }

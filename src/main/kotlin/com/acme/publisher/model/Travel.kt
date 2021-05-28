@@ -1,10 +1,7 @@
-package com.acme.model
+package com.acme.publisher.model
 
-
-import io.micronaut.core.annotation.Introspected
 import java.util.*
 
-@Introspected
 data class Travel(
     val id: UUID? = null,
     val local: String = "",
